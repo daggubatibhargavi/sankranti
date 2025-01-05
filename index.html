@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sankranti Festival</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f5f5f5;
+      }
+
+      .content {
+        text-align: center;
+        z-index: 2;
+      }
+
+      .parabola-text {
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: #ffd700;
+        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        height: 200px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .parabola-text span {
+        font-size: 60px;
+        font-weight: bold;
+        color: rgb(255, 255, 0);
+        display: inline-block;
+        opacity: 0;
+        animation: fadeIn 1s forwards;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      button {
+        background-color: #ff9800;
+        color: white;
+        font-size: 1.2rem;
+        padding: 12px 25px;
+        border: none;
+        border-radius: 25px;
+        cursor: pointer;
+        outline: none;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease;
+      }
+
+      button:hover {
+        background-color: #e68900;
+        transform: scale(1.1);
+        box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="content">
+      <button id="celebrateButton" onclick="changeBackground()">
+        Celebrate Sankranti
+      </button>
+    </div>
+    <div class="parabola-text" id="parabolaText"></div>
+
+    <script>
+      function changeBackground() {
+        document.body.style.backgroundImage =
+          "url('https://srichants.in/wp-content/uploads/2024/11/makar-Sankranti-2025.webp')";
+        document.body.style.backgroundSize = "cover";
+        document.body.style.backgroundPosition = "center";
+
+        const parabolaText = document.getElementById("parabolaText");
+        const text = "Happy Pongal";
+        parabolaText.innerHTML = "";
+
+        for (let i = 0; i < text.length; i++) {
+          const span = document.createElement("span");
+          const x = i - text.length / 2;
+          const y = -Math.pow(x, 2) / 5;
+          span.style.transform = `translate(${x * 25}px, ${y}px)`;
+          span.textContent = text[i];
+          parabolaText.appendChild(span);
+        }
+        const seeMore = document.createElement("button");
+        seeMore.innerText = " know More";
+        seeMore.style.position = "absolute";
+        seeMore.style.top = "65%";
+        seeMore.style.left = "45%";
+        seeMore.style.marginTop = "20px";
+        seeMore.style.padding = "10px";
+        document.body.appendChild(seeMore);
+
+        seeMore.addEventListener("click", () => {
+          const contentDiv = document.createElement("div");
+          contentDiv.style.backgroundColor = "lightgrey";
+          contentDiv.style.padding = "20px";
+          contentDiv.style.position = "absolute";
+          contentDiv.style.top = "60%";
+          contentDiv.style.left = "25%";
+          contentDiv.style.width = "50%";
+          contentDiv.style.margin = "20px auto";
+          contentDiv.style.boxShadow = "0 4px 8px rgba(0, 0, 0, 0.2)";
+          contentDiv.style.borderRadius = "10px";
+
+          const moreInfo = document.createElement("p");
+          moreInfo.style.fontSize = "16px";
+          moreInfo.style.wordSpacing = "2px";
+          moreInfo.style.color = "#333";
+          moreInfo.textContent =
+            "Makar Sankranti is a festival celebrated in India to mark the day when the sun moves into the zodiac sign of Capricorn. It usually falls on January 14th. This festival is a way to thank for the harvest. People celebrate by flying kites, lighting bonfires, and eating sweets made from sesame seeds and jaggery. It is celebrated in different ways in different parts of India, like Pongal in Tamil Nadu and Lohri in Punjab.";
+          contentDiv.appendChild(moreInfo);
+          document.body.appendChild(contentDiv);
+        });
+        const celebrateButton = document.getElementById("celebrateButton");
+        celebrateButton.style.display = "none";
+      }
+    </script>
+  </body>
+</html>
